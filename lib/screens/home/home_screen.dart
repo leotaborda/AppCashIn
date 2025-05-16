@@ -80,6 +80,16 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.dashboard);
+              },
+              icon: const Icon(Icons.dashboard),
+              label: const Text('Ver Dashboard'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+            ),
 
           ],
         ),

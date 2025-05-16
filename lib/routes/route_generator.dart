@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/finance/finance_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/home/task_list_screen.dart';
@@ -52,6 +53,10 @@ class RouteGenerator {
       case AppRoutes.finance:
         return MaterialPageRoute(
           builder: (_) => const FinanceScreen(),
+        );
+      case AppRoutes.dashboard:
+        return MaterialPageRoute(
+          builder: (_) => const DashboardScreen(),
         );
 
       default:
