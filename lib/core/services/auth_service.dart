@@ -9,7 +9,6 @@ class AuthService {
   }
 
   Future<bool> login(String username, String password) async {
-    // Credenciais fixas
     const validUsername = 'admin';
     const validPassword = '1234';
 

@@ -7,7 +7,7 @@ class FinanceService {
 
   Stream<List<FinanceModel>> getAllMonths() {
     return _collection
-        .orderBy('monthNumber') // <-- ordena corretamente
+        .orderBy('monthNumber')
         .snapshots()
         .map((snapshot) {
       return snapshot.docs

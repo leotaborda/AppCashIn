@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart'; // 👈 novo
+import 'package:firebase_core/firebase_core.dart'; //
 import 'routes/app_routes.dart';
 import 'routes/route_generator.dart';
 import 'screens/home/home_screen.dart';
 import 'core/constants/app_colors.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // 👈 importante
-  await Firebase.initializeApp(); // 👈 inicialização Firebase
+  WidgetsFlutterBinding.ensureInitialized(); //
+  await Firebase.initializeApp(); //
   runApp(const CashinApp());
 }
 

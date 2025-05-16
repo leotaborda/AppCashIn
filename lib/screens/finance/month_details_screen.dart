@@ -31,7 +31,7 @@ class _MonthDetailsScreenState extends State<MonthDetailsScreen> {
     final updated = FinanceModel(
       id: widget.model.id,
       month: widget.model.month,
-      monthNumber: widget.model.monthNumber, // 👈 aqui está o que faltava
+      monthNumber: widget.model.monthNumber,
       invested: double.tryParse(investedCtrl.text) ?? 0.0,
       saved: double.tryParse(savedCtrl.text) ?? 0.0,
       personal: double.tryParse(personalCtrl.text) ?? 0.0,
