@@ -1,0 +1,2 @@
+C:/Users/51399667866/Documents/Flutter/Projetos/cashin_app/android/app/.cxx/Debug/2o4a594f/x86/CMakeFiles/edit_cache.dir
+C:/Users/51399667866/Documents/Flutter/Projetos/cashin_app/android/app/.cxx/Debug/2o4a594f/x86/CMakeFiles/rebuild_cache.dir

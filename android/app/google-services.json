@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085955571908",
+    "project_id": "cashin-e6dee",
+    "storage_bucket": "cashin-e6dee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085955571908:android:f00e5c82f3918d08f84991",
+        "android_client_info": {
+          "package_name": "com.cashin.cashin_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8byVkl3USlX2D8LpDdd2OIcpBvwII2HE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
