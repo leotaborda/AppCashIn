@@ -97,9 +97,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           'Comparativo Mensal (Barras)',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 62),
         AspectRatio(
-          aspectRatio: 1.8,
+          aspectRatio: 1.2,
           child: BarChart(
             BarChartData(
               borderData: FlBorderData(show: false),
@@ -139,7 +139,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     BarChartRodData(toY: m.saved, color: AppColors.blueDark, width: 6),
                     BarChartRodData(toY: m.personal, color: AppColors.alert, width: 6),
                   ],
-                  showingTooltipIndicators: [0, 1, 2],
                 );
               }),
               gridData: FlGridData(show: true),
@@ -156,7 +155,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Distribuição Anual (Pizza)',
+          'Distribuição (Pizza)',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
