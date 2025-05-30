@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1085955571908",
-    "project_id": "cashin-e6dee",
-    "storage_bucket": "cashin-e6dee.firebasestorage.app"
+    "project_number": "18172249625",
+    "project_id": "climaapp-f933c",
+    "storage_bucket": "climaapp-f933c.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1085955571908:android:f00e5c82f3918d08f84991",
+        "mobilesdk_app_id": "1:18172249625:android:515867f68b6a0b0329cc88",
         "android_client_info": {
           "package_name": "com.cashin.cashin_app"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB8byVkl3USlX2D8LpDdd2OIcpBvwII2HE"
+          "current_key": "AIzaSyDTP8ixVUzFulHn_8I_to5-QKOUN-7fOSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18172249625:android:25f3083aa5fdaa0429cc88",
+        "android_client_info": {
+          "package_name": "com.clima.app_clima"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTP8ixVUzFulHn_8I_to5-QKOUN-7fOSM"
         }
       ],
       "services": {

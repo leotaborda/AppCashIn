@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart'; //
-import 'routes/app_routes.dart';
-import 'routes/route_generator.dart';
-import 'screens/home/home_screen.dart';
 import 'core/constants/app_colors.dart';
+import 'screens/navigation/main_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //
-  await Firebase.initializeApp(); //
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const CashinApp());
 }
 
@@ -27,12 +26,6 @@ class CashinApp extends StatelessWidget {
           bodyLarge: TextStyle(color: AppColors.textPrimary),
           bodyMedium: TextStyle(color: AppColors.textSecondary),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primary,
-            foregroundColor: Colors.white,
-          ),
-        ),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             color: Colors.white,
@@ -41,8 +34,7 @@ class CashinApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: AppRoutes.home,
-      onGenerateRoute: RouteGenerator.generateRoute,
+      home: const MainScreen(),
     );
   }
 }
