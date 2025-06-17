@@ -22,9 +22,17 @@ class _MonthDetailsScreenState extends State<MonthDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    investedCtrl = TextEditingController(text: widget.model.invested.toString());
-    savedCtrl = TextEditingController(text: widget.model.saved.toString());
-    personalCtrl = TextEditingController(text: widget.model.personal.toString());
+    investedCtrl = TextEditingController(text: widget.model.invested.toStringAsFixed(2));
+    savedCtrl = TextEditingController(text: widget.model.saved.toStringAsFixed(2));
+    personalCtrl = TextEditingController(text: widget.model.personal.toStringAsFixed(2));
+  }
+
+  @override
+  void dispose() {
+    investedCtrl.dispose();
+    savedCtrl.dispose();
+    personalCtrl.dispose();
+    super.dispose();
   }
 
   void _save() async {
@@ -32,46 +40,66 @@ class _MonthDetailsScreenState extends State<MonthDetailsScreen> {
       id: widget.model.id,
       month: widget.model.month,
       monthNumber: widget.model.monthNumber,
-      invested: double.tryParse(investedCtrl.text) ?? 0.0,
-      saved: double.tryParse(savedCtrl.text) ?? 0.0,
-      personal: double.tryParse(personalCtrl.text) ?? 0.0,
+      invested: double.tryParse(investedCtrl.text.replaceAll(',', '.')) ?? 0.0,
+      saved: double.tryParse(savedCtrl.text.replaceAll(',', '.')) ?? 0.0,
+      personal: double.tryParse(personalCtrl.text.replaceAll(',', '.')) ?? 0.0,
     );
     await _service.saveMonth(updated);
-    Navigator.pop(context);
+    if (mounted) Navigator.pop(context);
+  }
+
+  Widget _buildNumberField(String label, TextEditingController ctrl) {
+    return TextField(
+      controller: ctrl,
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(color: AppColors.primary),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.primary, width: 2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      ),
+      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: Text(widget.model.month),
         backgroundColor: AppColors.primary,
+        centerTitle: true,
+        elevation: 4,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            TextField(
-              controller: investedCtrl,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Investido (R\$)'),
-            ),
+            _buildNumberField('Investido (R\$)', investedCtrl),
             const SizedBox(height: 16),
-            TextField(
-              controller: savedCtrl,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Guardado (R\$)'),
-            ),
+            _buildNumberField('Guardado (R\$)', savedCtrl),
             const SizedBox(height: 16),
-            TextField(
-              controller: personalCtrl,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Gastos pessoais (R\$)'),
-            ),
+            _buildNumberField('Gastos pessoais (R\$)', personalCtrl),
             const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: _save,
-              child: const Text('Salvar'),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: ElevatedButton(
+                onPressed: _save,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ],
         ),

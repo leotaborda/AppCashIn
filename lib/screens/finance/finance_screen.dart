@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/finance_model.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/services/finance_service.dart';
@@ -18,47 +17,66 @@ class _FinanceScreenState extends State<FinanceScreen> {
   @override
   void initState() {
     super.initState();
-    _financeService.createInitialMonthsIfNeeded(); // cria os meses só se ainda não existir
+    _financeService.createInitialMonthsIfNeeded();
   }
 
   void _openMonth(FinanceModel model) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => MonthDetailsScreen(model: model),
-      ),
+      MaterialPageRoute(builder: (_) => MonthDetailsScreen(model: model)),
     );
-    setState(() {}); // atualiza depois de voltar
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: const Text('Controle Financeiro'),
         backgroundColor: AppColors.primary,
+        centerTitle: true,
+        elevation: 4,
       ),
       body: StreamBuilder<List<FinanceModel>>(
         stream: _financeService.getAllMonths(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
+            );
           }
+
           final months = snapshot.data ?? [];
 
-          return ListView.builder(
+          if (months.isEmpty) {
+            return Center(
+              child: Text(
+                'Nenhum dado disponível.',
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 16),
+              ),
+            );
+          }
+
+          return ListView.separated(
+            padding: const EdgeInsets.symmetric(vertical: 12),
             itemCount: months.length,
+            separatorBuilder: (_, __) => Divider(color: AppColors.border, height: 1),
             itemBuilder: (context, index) {
               final m = months[index];
               return ListTile(
-                title: Text(m.month),
-                subtitle: Text(
-                  'Investido: R\$ ${m.invested.toStringAsFixed(2)} | '
-                      'Guardado: R\$ ${m.saved.toStringAsFixed(2)} | '
-                      'Gastos: R\$ ${m.personal.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 13),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                title: Text(
+                  m.month,
+                  style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
                 ),
-                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                subtitle: Text(
+                  'Investido: R\$ ${m.invested.toStringAsFixed(2)} • '
+                      'Guardado: R\$ ${m.saved.toStringAsFixed(2)} • '
+                      'Gastos: R\$ ${m.personal.toStringAsFixed(2)}',
+                  style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                ),
+                trailing: Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.secondary),
                 onTap: () => _openMonth(m),
               );
             },
